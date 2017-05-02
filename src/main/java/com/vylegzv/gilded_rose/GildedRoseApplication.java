@@ -34,24 +34,25 @@ public class GildedRoseApplication {
       itemRepository.save(new Item("Item1", "Item1 Description", 10));
       itemRepository.save(new Item("Item2", "Item2 Description", 11));
       itemRepository.save(new Item("Item3", "Item3 Description", 12));
-      
+      itemRepository.save(new Item("Item4", "Item4 Description", 13));
+
       log.info("Find all items:");
-      for(Item item : itemRepository.findAll()) {
+      for (Item item : itemRepository.findAll()) {
         log.info(item.toString());
       }
-      
+
       log.info("");
       log.info("Find a item by id:");
       Item item = itemRepository.findOne(1L);
       log.info(item.toString());
       log.info("");
-      
+
       log.info("Buy an item");
       itemRepository.delete(item);
       log.info("");
-      
+
       log.info("Find all items after deleting item1:");
-      for(Item item2 : itemRepository.findAll()) {
+      for (Item item2 : itemRepository.findAll()) {
         log.info(item2.toString());
       }
       log.info("");

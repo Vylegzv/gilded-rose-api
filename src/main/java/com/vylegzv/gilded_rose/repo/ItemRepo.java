@@ -1,6 +1,6 @@
 package com.vylegzv.gilded_rose.repo;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.vylegzv.gilded_rose.domain.Item;
@@ -11,6 +11,5 @@ import com.vylegzv.gilded_rose.domain.Item;
  *
  */
 @Repository
-public interface ItemRepo extends CrudRepository<Item, Long> {
-
+public interface ItemRepo extends JpaRepository<Item, Long> {
 }
