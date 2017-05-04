@@ -19,9 +19,9 @@ public class ItemResource extends ResourceSupport {
 
   public ItemResource(Item item) {
     this.item = item;
-    this.add(linkTo(ItemController.class).slash(ItemApi.ITEMS_PATH)
+    add(linkTo(ItemController.class).slash(ItemApi.ITEMS_PATH)
         .withRel("items"));
-    this.add(linkTo(methodOn(ItemController.class).buyItem(item.getId()))
+    add(linkTo(methodOn(ItemController.class).buyItem(item.getId()))
         .withSelfRel());
   }
 
