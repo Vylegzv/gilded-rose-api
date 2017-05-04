@@ -85,6 +85,8 @@ public class GildedRoseApplicationTests {
         .andExpect(jsonPath("$._links.self.href",
             is("http://localhost" + ItemApi.ITEM_BUY_PATH + "?"
                 + ItemApi.ID_PARAM + "=" + items.get(0).getId())));
+    assertNull("item should have been deleted from db",
+        itemRepo.findOne(items.get(0).getId()));
   }
 
   @Test

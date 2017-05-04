@@ -40,22 +40,6 @@ public class GildedRoseApplication {
       for (Item item : itemRepository.findAll()) {
         log.info(item.toString());
       }
-
-      log.info("");
-      log.info("Find a item by id:");
-      Item item = itemRepository.findOne(1L);
-      log.info(item.toString());
-      log.info("");
-
-      log.info("Buy an item");
-      itemRepository.delete(item);
-      log.info("");
-
-      log.info("Find all items after deleting item1:");
-      for (Item item2 : itemRepository.findAll()) {
-        log.info(item2.toString());
-      }
-      log.info("");
     };
   }
 }
