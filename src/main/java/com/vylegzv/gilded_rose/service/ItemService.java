@@ -1,14 +1,16 @@
 package com.vylegzv.gilded_rose.service;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
-
-import org.assertj.core.util.Lists;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Resources;
 import org.springframework.stereotype.Service;
+import com.vylegzv.gilded_rose.client.ItemApi;
 import com.vylegzv.gilded_rose.domain.Item;
 import com.vylegzv.gilded_rose.exception.ItemOutOfStockException;
 import com.vylegzv.gilded_rose.repo.ItemRepo;
+import com.vylegzv.gilded_rose.resource.ItemResource;
 
 /**
  * 
@@ -16,17 +18,25 @@ import com.vylegzv.gilded_rose.repo.ItemRepo;
  *
  */
 @Service
-public class ItemService {
+public class ItemService implements ItemApi {
 
   @Autowired
   private ItemRepo itemRepo;
 
-  public Collection<Item> getItems() {
-    return Lists.newArrayList(itemRepo.findAll());
+  @Override
+  public Resources<ItemResource> getItems() {
+    List<ItemResource> itemResources = itemRepo.findAll().stream()
+        .map(ItemResource::new).collect(Collectors.toList());
+    return new Resources<>(itemResources);
   }
 
-  public Item buyItem(long id) {
-    return Optional.ofNullable(itemRepo.findOne(id))
-        .orElseThrow(() -> new ItemOutOfStockException(id));
+  @Override
+  public ItemResource buyItem(long id) {
+    Optional<Item> item = Optional.ofNullable(itemRepo.findOne(id));
+    if (item.isPresent()) {
+      return new ItemResource(item.get());
+    } else {
+      throw new ItemOutOfStockException(id);
+    }
   }
 }

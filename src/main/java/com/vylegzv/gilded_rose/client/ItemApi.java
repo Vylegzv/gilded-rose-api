@@ -1,7 +1,7 @@
 package com.vylegzv.gilded_rose.client;
 
-import java.util.Collection;
-import com.vylegzv.gilded_rose.domain.Item;
+import org.springframework.hateoas.Resources;
+import com.vylegzv.gilded_rose.resource.ItemResource;
 import retrofit.http.GET;
 import retrofit.http.Query;
 
@@ -17,8 +17,8 @@ public interface ItemApi {
   public static final String ITEM_BUY_PATH = ITEMS_PATH + "/buy";
 
   @GET(ITEMS_PATH)
-  public Collection<Item> getItems();
+  public Resources<ItemResource> getItems();
 
   @GET(ITEM_BUY_PATH)
-  public Item buyItem(@Query(ID_PARAM) long id);
+  public ItemResource buyItem(@Query(ID_PARAM) long id);
 }
