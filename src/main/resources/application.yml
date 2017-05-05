@@ -5,3 +5,10 @@ server:
         keyStore: src/main/resources/gildedrose.keystore
         keyStorePassword: gildedrose
         keyPassword: gildedrose
+        
+security:
+    config:
+        accessTokenValidSec: 120
+        refreshTokenValidSec: 600
+        client: trustedclient
+        secret: trustedclient123
