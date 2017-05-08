@@ -102,7 +102,6 @@ public class GildedRoseApplicationTests {
             is(items.get(0).getDescription())))
         .andExpect(jsonPath("$._embedded.itemResources[0].item.price",
             is(items.get(0).getPrice())))
-
         .andExpect(jsonPath("$._embedded.itemResources[0]._links.items.href",
             is("http://localhost" + ItemApi.ITEMS_PATH)))
         .andExpect(jsonPath("$._embedded.itemResources[0]._links.self.href",
@@ -115,18 +114,35 @@ public class GildedRoseApplicationTests {
             is(items.get(1).getDescription())))
         .andExpect(jsonPath("$._embedded.itemResources[1].item.price",
             is(items.get(1).getPrice())))
+        .andExpect(jsonPath("$._embedded.itemResources[1]._links.items.href",
+            is("http://localhost" + ItemApi.ITEMS_PATH)))
+        .andExpect(jsonPath("$._embedded.itemResources[1]._links.self.href",
+            is("http://localhost" + ItemApi.ITEM_BUY_PATH + "?"
+                + ItemApi.ID_PARAM + "=" + items.get(1).getId())))
+
         .andExpect(jsonPath("$._embedded.itemResources[2].item.name",
             is(items.get(2).getName())))
         .andExpect(jsonPath("$._embedded.itemResources[2].item.description",
             is(items.get(2).getDescription())))
         .andExpect(jsonPath("$._embedded.itemResources[2].item.price",
             is(items.get(2).getPrice())))
+        .andExpect(jsonPath("$._embedded.itemResources[2]._links.items.href",
+            is("http://localhost" + ItemApi.ITEMS_PATH)))
+        .andExpect(jsonPath("$._embedded.itemResources[2]._links.self.href",
+            is("http://localhost" + ItemApi.ITEM_BUY_PATH + "?"
+                + ItemApi.ID_PARAM + "=" + items.get(2).getId())))
+
         .andExpect(jsonPath("$._embedded.itemResources[3].item.name",
             is(items.get(3).getName())))
         .andExpect(jsonPath("$._embedded.itemResources[3].item.description",
             is(items.get(3).getDescription())))
         .andExpect(jsonPath("$._embedded.itemResources[3].item.price",
-            is(items.get(3).getPrice())));
+            is(items.get(3).getPrice())))
+        .andExpect(jsonPath("$._embedded.itemResources[3]._links.items.href",
+            is("http://localhost" + ItemApi.ITEMS_PATH)))
+        .andExpect(jsonPath("$._embedded.itemResources[3]._links.self.href",
+            is("http://localhost" + ItemApi.ITEM_BUY_PATH + "?"
+                + ItemApi.ID_PARAM + "=" + items.get(3).getId())));
   }
 
   @Test
